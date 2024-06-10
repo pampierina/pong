@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
 using namespace std;
 
 class Server{
@@ -53,11 +55,7 @@ public:
     }
 };
 
-#include <windows.h>
-#include <conio.h>
-#include <stdio.h>
-#include <iostream>
-#include <stdlib.h>
+
 
 int pala_a = 10;
 int pala_b = 10;
@@ -289,13 +287,12 @@ void mover_bola(){
 int main()
 {
     Server *Servidor = new Server();
-    // Aquí va el resto de tu código de Pong...
+    Servidor->Enviar("");
+        Servidor->Recibir();
+
     while(!game_over()){
         teclear();
         mover_bola();
-        // Aquí puedes enviar y recibir datos del cliente.
-        Servidor->Enviar("Aquí va el mensaje a enviar");
-        Servidor->Recibir();
         Sleep(75);
     }
     OcultarCursor();
@@ -303,11 +300,6 @@ int main()
     pintar_palas();
     pinta_goles();
 
-    while(!game_over()){
-        teclear();
-        mover_bola();
-        Sleep(75);
-    }
 
     gotoxy(35,15);
     printf("GAME OVER!");

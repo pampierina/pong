@@ -280,13 +280,12 @@ void mover_bola(){
 int main()
 {
     Client *Cliente = new Client();
-    // Aquí va el resto de tu código de Pong...
+
+        Cliente->Enviar("Aquí va el mensaje a enviar");
+        Cliente->Recibir();
     while(!game_over()){
         teclear();
         mover_bola();
-        // Aquí puedes enviar y recibir datos del servidor.
-        Cliente->Enviar("Aquí va el mensaje a enviar");
-        Cliente->Recibir();
         Sleep(75);
     }
  OcultarCursor();
@@ -294,11 +293,6 @@ int main()
     pintar_palas();
     pinta_goles();
 
-    while(!game_over()){
-        teclear();
-        mover_bola();
-        Sleep(75);
-    }
 
     gotoxy(35,15);
     printf("GAME OVER!");
