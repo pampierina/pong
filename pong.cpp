@@ -45,12 +45,8 @@ public:
     }
 };
 
-#include <windows.h>
-#include <conio.h>
-#include <stdio.h>
-#include <iostream>
-#include <stdlib.h>
-
+class juego{
+    public:
 int pala_a = 10;
 int pala_b = 10;
 int puntos_a = 0;
@@ -275,32 +271,30 @@ void mover_bola(){
     gotoxy(x,y);printf("O");
 
 }
+};
 
+int main(){
+     Client *Cliente = new Client();
 
-int main()
-{
-    Client *Cliente = new Client();
+        Cliente->Enviar("");
 
-        Cliente->Enviar("Aquí va el mensaje a enviar");
-        Cliente->Recibir();
-    while(!game_over()){
-        teclear();
-        mover_bola();
+    juego Juego;
+    Juego.OcultarCursor();
+    Juego.pintar_Campo();
+    Juego.pintar_palas();
+    Juego.pinta_goles();
+         Cliente->Recibir();
+
+    while(!Juego.game_over()){
+        Juego.teclear();
+        Juego.mover_bola();
         Sleep(75);
     }
- OcultarCursor();
-    pintar_Campo();
-    pintar_palas();
-    pinta_goles();
 
-
-    gotoxy(35,15);
+    Juego.gotoxy(35,15);
     printf("GAME OVER!");
 
-
-
-    Cliente->CerrarSocket();
     getch();
-
     return 0;
 }
+

@@ -55,8 +55,8 @@ public:
     }
 };
 
-
-
+class juego{
+    public:
 int pala_a = 10;
 int pala_b = 10;
 int puntos_a = 0;
@@ -281,30 +281,29 @@ void mover_bola(){
     gotoxy(x,y);printf("O");
 
 }
+};
 
-
-
-int main()
-{
-    Server *Servidor = new Server();
+int main(){
+      Server *Servidor = new Server();
     Servidor->Enviar("");
-        Servidor->Recibir();
 
-    while(!game_over()){
-        teclear();
-        mover_bola();
+    juego Juego;
+    Juego.OcultarCursor();
+    Juego.pintar_Campo();
+    Juego.pintar_palas();
+    Juego.pinta_goles();
+    Servidor->Recibir();
+
+    while(!Juego.game_over()){
+        Juego.teclear();
+        Juego.mover_bola();
         Sleep(75);
     }
-    OcultarCursor();
-    pintar_Campo();
-    pintar_palas();
-    pinta_goles();
 
-
-    gotoxy(35,15);
+    Juego.gotoxy(35,15);
     printf("GAME OVER!");
 
-    Servidor->CerrarSocket();
     getch();
     return 0;
 }
+
