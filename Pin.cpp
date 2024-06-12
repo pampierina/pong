@@ -144,7 +144,7 @@ void pintar_palas(){
 void pinta_goles(){
     gotoxy(1,1);printf("Equipo A = %d",puntos_a);
     gotoxy(65,1);printf("Equipo b = %d",puntos_b);
-    if(puntos_a==10 || puntos_b==10){
+    if(puntos_a==3 || puntos_b==3){
         a=1;
     }
 }
@@ -360,4 +360,3 @@ int main(){
     getch();
     return 0;
 }
-
