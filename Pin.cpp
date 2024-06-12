@@ -6,6 +6,8 @@
 #include <stdlib.h>
 
 
+int puntos_a = 0;
+int puntos_b = 0;
 
 using namespace std;
 
@@ -59,8 +61,6 @@ class juego{
     public:
 int pala_a = 10;
 int pala_b = 10;
-int puntos_a = 0;
-int puntos_b = 0;
 int a=0;//0 = partida jugandose/ 1 = partida terminada
 char tecla;
 int x=10;
@@ -332,19 +332,19 @@ int main(){
             }
         }
 
-        gotoxy(87, 0); std::cout<<"LOS MEJORES PUNTAJES: ";
-        gotoxy(87, 2); std::cout<<"jugador a   |  jugador b";
+        Juego.gotoxy(87, 0); std::cout<<"LOS MEJORES PUNTAJES: ";
+        Juego.gotoxy(87, 2); std::cout<<"jugador a   |  jugador b";
 
 
-        gotoxy(87, 3); std::cout << "     " <<puntajes_ja[3]<< "    vs     " <<puntajes_jb[3];
-        gotoxy(87, 4); std::cout << "     " <<puntajes_ja[2]<< "    vs     " <<puntajes_jb[2];
-        gotoxy(87, 5); std::cout << "     " <<puntajes_ja[1]<< "    vs     " <<puntajes_jb[1];
+        Juego.gotoxy(87, 3); std::cout << "     " <<puntajes_ja[3]<< "    vs     " <<puntajes_jb[3];
+        Juego.gotoxy(87, 4); std::cout << "     " <<puntajes_ja[2]<< "    vs     " <<puntajes_jb[2];
+        Juego.gotoxy(87, 5); std::cout << "     " <<puntajes_ja[1]<< "    vs     " <<puntajes_jb[1];
 
 
 
 
     //anunciar al ganador
-    gotoxy(33,13);
+    Juego.gotoxy(33,13);
 
     if (puntos_a == 3){
 
