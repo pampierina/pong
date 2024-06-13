@@ -6,9 +6,6 @@
 #include <stdlib.h>
 
 
-int puntos_a = 0;
-int puntos_b = 0;
-
 using namespace std;
 
 class Server{
@@ -37,7 +34,7 @@ public:
         }
     }
 
-    string Recibir()
+    void Recibir()
     {
       recv(client, buffer, sizeof(buffer), 0);
       cout << "El cliente dice: " << buffer << endl;
@@ -69,6 +66,9 @@ int dirx=1;
 int diry=1;
 int bx;
 int by;
+int puntos_a = 0;
+int puntos_b = 0;
+
 
 //funcion que posiciona el cursor en las coordenadas x e y
 void gotoxy(int x, int y){
@@ -280,27 +280,11 @@ void mover_bola(){
     //imprimir pelota
     gotoxy(x,y);printf("O");
 
+
 }
-};
 
-int main(){
-      Server *Servidor = new Server();
-    Servidor->Enviar("");
+ 	void anunciar(){
 
-    juego Juego;
-    Juego.OcultarCursor();
-    Juego.pintar_Campo();
-    Juego.pintar_palas();
-    Juego.pinta_goles();
-    Servidor->Recibir();
-
-    while(!Juego.game_over()){
-        Juego.teclear();
-        Juego.mover_bola();
-        Sleep(75);
-    }
-
-    //escala de ganadores
 
     int puntajes_ja[4] = {3,3,3,0};
     int puntajes_jb[4] = {0,0,1,0};
@@ -332,19 +316,20 @@ int main(){
             }
         }
 
-        Juego.gotoxy(87, 0); std::cout<<"LOS MEJORES PUNTAJES: ";
-        Juego.gotoxy(87, 2); std::cout<<"jugador a   |  jugador b";
+        gotoxy(87, 0); std::cout<<"LOS MEJORES PUNTAJES: ";
+        gotoxy(87, 2); std::cout<<"jugador a   |  jugador b";
 
 
-        Juego.gotoxy(87, 3); std::cout << "     " <<puntajes_ja[3]<< "    vs     " <<puntajes_jb[3];
-        Juego.gotoxy(87, 4); std::cout << "     " <<puntajes_ja[2]<< "    vs     " <<puntajes_jb[2];
-        Juego.gotoxy(87, 5); std::cout << "     " <<puntajes_ja[1]<< "    vs     " <<puntajes_jb[1];
+        gotoxy(87, 3); std::cout << "     " <<puntajes_ja[3]<< "    vs     " <<puntajes_jb[3];
+        gotoxy(87, 4); std::cout << "     " <<puntajes_ja[2]<< "    vs     " <<puntajes_jb[2];
+        gotoxy(87, 5); std::cout << "     " <<puntajes_ja[1]<< "    vs     " <<puntajes_jb[1];
 
 
 
 
-    //anunciar al ganador
-    Juego.gotoxy(33,13);
+
+
+    gotoxy(33,13);
 
     if (puntos_a == 3){
 
@@ -353,6 +338,32 @@ int main(){
     else{
         printf("GANA EL JUGADOR B");
     }
+}
+
+
+};
+
+
+
+
+int main(){
+    Server *Servidor = new Server();
+    Servidor->Enviar("");
+
+    juego Juego;
+    Juego.OcultarCursor();
+    Juego.pintar_Campo();
+    Juego.pintar_palas();
+    Juego.pinta_goles();
+    Servidor->Recibir();
+
+    while(!Juego.game_over()){
+        Juego.teclear();
+        Juego.mover_bola();
+        Sleep(75);
+    }
+    Juego.anunciar();
+
 
 
 
